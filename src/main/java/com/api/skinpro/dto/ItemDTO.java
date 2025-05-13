@@ -3,14 +3,24 @@ package com.api.skinpro.dto;
 import com.api.skinpro.entity.Item;
 import com.api.skinpro.enums.Categoria;
 import com.api.skinpro.enums.Raridade;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class ItemDTO {
     private Long id;
+    @NotBlank(message = "Escolha um jogo para associação.")
     private Long jogoId;
+    @NotBlank(message = "O nome do item é obrigatório.")
+    @Size(max = 50, message = "O nome do item não deve ultrapassar 50 caracteres.")
     private String nome;
+    @NotBlank(message = "A descrição é obrigatória.")
+    @Size(max = 500, message = "A descrição não deve ultrapassar 500 caracteres.")
     private String descricao;
     private String imgUrl;
+    @NotNull(message = "Escolha uma categoria.")
     private Categoria categoria;
+    @NotNull(message = "Escolha uma raridade.")
     private Raridade raridade;
 
     public ItemDTO() {

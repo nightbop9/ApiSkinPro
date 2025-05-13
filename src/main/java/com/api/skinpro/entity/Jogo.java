@@ -6,26 +6,30 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "tb_jogo")
 public class Jogo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 50, nullable = false)
     private String nome;
-    private LocalDate lancamento;
+    private String imgLogoUrl;
+    private String imgBackgroundUrl;
 
     public Jogo() {
     }
 
-    public Jogo(String nome, LocalDate lancamento) {
+    public Jogo(String nome, String imgLogoUrl, String imgBackgroundUrl) {
         this.nome = nome;
-        this.lancamento = lancamento;
+        this.imgLogoUrl = imgLogoUrl;
+        this.imgBackgroundUrl = imgBackgroundUrl;
     }
 
     public Jogo(JogoDTO jogoDTO) {
         this.id = jogoDTO.getId();
         this.nome = jogoDTO.getNome();
-        this.lancamento = jogoDTO.getLancamento();
+        this.imgLogoUrl = jogoDTO.getImgLogoUrl();
+        this.imgBackgroundUrl = jogoDTO.getImgBackgroundUrl();
     }
 
     public Long getId() {
@@ -40,11 +44,19 @@ public class Jogo {
         this.nome = nome;
     }
 
-    public LocalDate getLancamento() {
-        return lancamento;
+    public String getImgLogoUrl() {
+        return imgLogoUrl;
     }
 
-    public void setLancamento(LocalDate lancamento) {
-        this.lancamento = lancamento;
+    public void setImgLogoUrl(String imgLogoUrl) {
+        this.imgLogoUrl = imgLogoUrl;
+    }
+
+    public String getImgBackgroundUrl() {
+        return imgBackgroundUrl;
+    }
+
+    public void setImgBackgroundUrl(String imgBackgroundUrl) {
+        this.imgBackgroundUrl = imgBackgroundUrl;
     }
 }

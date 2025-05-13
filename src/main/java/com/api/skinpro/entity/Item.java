@@ -39,6 +39,15 @@ public class Item {
         this.raridade = raridade;
     }
 
+    public Item(ItemDTO itemDTO) {
+        id = itemDTO.getId();
+        nome = itemDTO.getNome();
+        descricao = itemDTO.getDescricao();
+        imgUrl = itemDTO.getImgUrl();
+        categoria = itemDTO.getCategoria();
+        raridade = itemDTO.getRaridade();
+    }
+
     public Long getId() {
         return id;
     }
