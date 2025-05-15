@@ -4,8 +4,6 @@ import com.api.skinpro.entity.Jogo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-import java.time.LocalDate;
-
 public class JogoDTO {
     private Long id;
     @NotBlank(message = "O nome do jogo é obrigatório.")

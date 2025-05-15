@@ -3,8 +3,6 @@ package com.api.skinpro.entity;
 import com.api.skinpro.dto.JogoDTO;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-
 @Entity
 @Table(name = "tb_jogo")
 public class Jogo {
