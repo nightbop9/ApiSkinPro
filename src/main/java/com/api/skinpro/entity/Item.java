@@ -4,8 +4,6 @@ import com.api.skinpro.dto.ItemDTO;
 import com.api.skinpro.enums.Categoria;
 import com.api.skinpro.enums.Raridade;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
-import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "tb_item")

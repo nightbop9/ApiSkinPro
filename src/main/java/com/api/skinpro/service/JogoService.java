@@ -6,7 +6,6 @@ import com.api.skinpro.exception.NotFoundException;
 import com.api.skinpro.repository.JogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
