@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -23,14 +24,18 @@ public class JogoController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Object> create(@Valid @RequestBody JogoDTO jogoDTO){
-        jogoService.create(jogoDTO);
+    public ResponseEntity<Object> create(@Valid @ModelAttribute JogoDTO jogoDTO,
+                                         @RequestParam(value = "logo", required = false) MultipartFile logo,
+                                         @RequestParam(value = "bg", required = false) MultipartFile bg){
+        jogoService.create(jogoDTO, logo, bg);
         return ResponseBuilder.ResponseBuild(HttpStatus.OK, "Jogo criado com sucesso.");
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> update (@PathVariable Long id, @Valid @RequestBody JogoDTO jogoDTO) {
-        jogoService.update(id, jogoDTO);
+    public ResponseEntity<Object> update (@PathVariable Long id, @Valid @ModelAttribute JogoDTO jogoDTO,
+                                          @RequestParam(value = "logo", required = false) MultipartFile logo,
+                                          @RequestParam(value = "bg", required = false) MultipartFile bg) {
+        jogoService.update(id, jogoDTO, logo, bg);
         return ResponseBuilder.ResponseBuild(HttpStatus.OK, "Jogo atualizado com sucesso.");
     }
 
