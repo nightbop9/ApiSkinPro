@@ -9,7 +9,8 @@ import jakarta.validation.constraints.Size;
 
 public class ItemDTO {
     private Long id;
-    @NotBlank(message = "Escolha um jogo para associação.")
+    @NotNull
+        (message = "Escolha um jogo para associação.")
     private Long jogoId;
     @NotBlank(message = "O nome do item é obrigatório.")
     @Size(max = 50, message = "O nome do item não deve ultrapassar 50 caracteres.")

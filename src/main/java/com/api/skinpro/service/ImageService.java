@@ -81,7 +81,9 @@ public class ImageService {
      * @param imgUrl da imagem anterior
      */
     public void deleteImage(String imgUrl) {
-        String fileName = extractFileName(imgUrl);
+        if(imgUrl != null){
+            String fileName = extractFileName(imgUrl);
         containerClient.getBlobClient(fileName).deleteIfExists(); //Previne casos de erro onde a imagem é nula
+        }
     }
 }

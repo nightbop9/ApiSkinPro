@@ -29,8 +29,8 @@ public class JogoService {
      */
     public List<JogoDTO> list() {
         return jogoRepository.findAll().stream()
-                .map(JogoDTO::new)
-                .toList();
+            .map(JogoDTO::new)
+            .toList();
     }
 
     /**
@@ -53,7 +53,7 @@ public class JogoService {
         } else {
             jogo.setImgBackgroundUrl(null);
         }
-        jogoRepository.save(new Jogo(jogoDTO));
+        jogoRepository.save(jogo);
     }
 
     /**
@@ -66,7 +66,7 @@ public class JogoService {
     @Transactional
     public void update(Long id, JogoDTO jogoDTO, MultipartFile logo, MultipartFile bg) {
         Jogo jogo = jogoRepository.findById(id).orElseThrow(() ->
-                new NotFoundException("atualização."));
+            new NotFoundException("atualização."));
         jogo.setNome(jogoDTO.getNome());
 
         String imgLogoUrl = jogo.getImgLogoUrl();
@@ -78,9 +78,7 @@ public class JogoService {
                 jogo.setImgLogoUrl(imageService.updateImage(imgLogoUrl, logo));
             }
         } else {
-            if (imgLogoUrl != null) {
-                imageService.deleteImage(imgLogoUrl);
-            }
+            imageService.deleteImage(imgLogoUrl);
             jogo.setImgLogoUrl(null);
         }
 
@@ -88,16 +86,15 @@ public class JogoService {
 
         if (bg != null && !bg.isEmpty()) {
             if (imgBackgroundUrl == null || imgBackgroundUrl.isBlank()) {
-                jogo.setImgBackgroundUrl(imageService.uploadImage(logo));
+                jogo.setImgBackgroundUrl(imageService.uploadImage(bg));
             } else {
-                jogo.setImgBackgroundUrl(imageService.updateImage(imgBackgroundUrl, logo));
+                jogo.setImgBackgroundUrl(imageService.updateImage(imgBackgroundUrl, bg));
             }
         } else {
-            if (imgBackgroundUrl != null) {
-                imageService.deleteImage(imgBackgroundUrl);
-            }
+            imageService.deleteImage(imgBackgroundUrl);
             jogo.setImgBackgroundUrl(null);
         }
+        jogoRepository.save(jogo);
     }
 
     //    /**
@@ -108,7 +105,7 @@ public class JogoService {
     @Transactional
     public void delete(Long id) {
         Jogo jogo = jogoRepository.findById(id).orElseThrow(() ->
-                new NotFoundException("exclusão."));
+            new NotFoundException("exclusão."));
         if (jogo.getImgLogoUrl() != null) {
             imageService.deleteImage(jogo.getImgLogoUrl());
         }
