@@ -29,11 +29,10 @@ public class ItemService {
     public void create(ItemDTO itemDTO, MultipartFile file) {
         Item item = new Item(itemDTO);
         item.setJogo(jogoRepository.findById(itemDTO.getJogoId()).orElseThrow(() -> new NotFoundException("associação")));
-        imageService.uploadImage(file);
         if (file != null && !file.isEmpty()) {
-            itemDTO.setImgUrl(imageService.uploadImage(file));
+            item.setImgUrl(imageService.uploadImage(file));
         } else {
-            itemDTO.setImgUrl(null);
+            item.setImgUrl(null);
         }
         itemRepository.save(item);
     }
@@ -44,7 +43,7 @@ public class ItemService {
         item.setDescricao(itemDTO.getDescricao());
         item.setCategoria(itemDTO.getCategoria());
         item.setRaridade(itemDTO.getRaridade());
-        item.setJogo(jogoRepository.findById(id).orElseThrow(() -> new NotFoundException("associação")));
+        item.setJogo(jogoRepository.findById(itemDTO.getJogoId()).orElseThrow(() -> new NotFoundException("associação")));
         String imgUrl = item.getImgUrl();
         if (file != null && !file.isEmpty()) {
             if (imgUrl == null || imgUrl.isBlank()) {

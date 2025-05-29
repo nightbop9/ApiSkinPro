@@ -1,6 +1,6 @@
 package com.api.skinpro.exception;
 
-import com.api.skinpro.util.ResponseBuilder;
+import com.api.skinpro.util.CustomResponseBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -11,7 +11,7 @@ public class ExceptionGlobal {
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<Object> handlerException(NotFoundException e){
-        return ResponseBuilder.ResponseBuild(HttpStatus.NOT_FOUND, e.getMessage());
+        return CustomResponseBuilder.ResponseBuild(HttpStatus.NOT_FOUND, e.getMessage());
     }
 
     @ExceptionHandler(Exception.class)

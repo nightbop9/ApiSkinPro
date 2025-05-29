@@ -2,7 +2,7 @@ package com.api.skinpro.controller;
 
 import com.api.skinpro.dto.JogoDTO;
 import com.api.skinpro.service.JogoService;
-import com.api.skinpro.util.ResponseBuilder;
+import com.api.skinpro.util.CustomResponseBuilder;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ public class JogoController {
                                          @RequestParam(value = "logo", required = false) MultipartFile logo,
                                          @RequestParam(value = "bg", required = false) MultipartFile bg){
         jogoService.create(jogoDTO, logo, bg);
-        return ResponseBuilder.ResponseBuild(HttpStatus.OK, "Jogo criado com sucesso.");
+        return CustomResponseBuilder.ResponseBuild(HttpStatus.OK, "Jogo criado com sucesso.");
     }
 
     @PutMapping("/update/{id}")
@@ -36,12 +36,12 @@ public class JogoController {
                                           @RequestParam(value = "logo", required = false) MultipartFile logo,
                                           @RequestParam(value = "bg", required = false) MultipartFile bg) {
         jogoService.update(id, jogoDTO, logo, bg);
-        return ResponseBuilder.ResponseBuild(HttpStatus.OK, "Jogo atualizado com sucesso.");
+        return CustomResponseBuilder.ResponseBuild(HttpStatus.OK, "Jogo atualizado com sucesso.");
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> delete (@PathVariable Long id) {
         jogoService.delete(id);
-        return ResponseBuilder.ResponseBuild(HttpStatus.OK, "Jogo excluído com sucesso.");
+        return CustomResponseBuilder.ResponseBuild(HttpStatus.OK, "Jogo excluído com sucesso.");
     }
 }

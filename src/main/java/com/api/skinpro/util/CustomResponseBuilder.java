@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-public class ResponseBuilder  {
+public class CustomResponseBuilder {
     public static ResponseEntity<Object> ResponseBuild(HttpStatus status, String message) {
         return ResponseEntity.status(status).body(Map.of("status", status.value(), "message", message));
     }

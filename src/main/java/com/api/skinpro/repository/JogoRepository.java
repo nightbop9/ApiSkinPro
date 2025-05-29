@@ -8,5 +8,4 @@ import java.util.List;
 
 @Repository
 public interface JogoRepository extends JpaRepository<Jogo, Long> {
-    List<Jogo> id(Long id);
 }
